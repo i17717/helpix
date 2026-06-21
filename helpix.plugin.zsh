@@ -38,6 +38,18 @@ _helpix() {
   local -a words
   words=("${(z)cmd}")
 
+  local -a alias_words
+  alias_words=("${(z)aliases[${words[1]}]}")
+
+  if [[ -n $alias_words ]]; then
+    words[1]=$alias_words
+  fi
+
+  words=(
+    "${alias_words[@]}"
+    "${words[@]:1}"
+)
+
   if (( HELPIX_ENABLED )) && _helpix_check_help "${words[@]}"; then
     zle kill-whole-line
     "${words[@]}" 2>&1 | "$HELPIX_VIEWER" $(_helpix_viewer_args)
