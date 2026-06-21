@@ -1,0 +1,5 @@
+Tasks:
+
+1- expand the plugin to support aliases
+2- enable/disable the plugin
+3- error handling
