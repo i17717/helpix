@@ -33,10 +33,8 @@ _helpix() {
   # suggested by AI, it restores normal Zsh behavior
   emulate -L zsh  
 
-  local cmd="$BUFFER"
-
   local -a words
-  words=("${(z)cmd}")
+  words=("${(z)BUFFER}")
 
   local -a alias_words
   alias_words=("${(z)aliases[${words[1]}]}")
