@@ -5,6 +5,7 @@
 
 _helpix_viewer_args() {
   local -a args=()
+  
   case "$HELPIX_VIEWER" in
     "bat"|"batcat")
        args=("${(@z)HELPIX_STYLE}")
@@ -33,20 +34,16 @@ _helpix() {
   # suggested by AI, it restores normal Zsh behavior
   emulate -L zsh  
 
-  local -a words
-  words=("${(z)BUFFER}")
+  local -a words alias_words
 
-  local -a alias_words
+  words=("${(z)BUFFER}")
   alias_words=("${(z)aliases[${words[1]}]}")
 
   if [[ -n $alias_words ]]; then
     words[1]=$alias_words
-  fi
 
-  words=(
-    "${alias_words[@]}"
-    "${words[@]:1}"
-)
+    words=("${alias_words[@]}" "${words[@]:1}")
+  fi
 
   if (( HELPIX_ENABLED )) && _helpix_check_help "${words[@]}"; then
     zle kill-whole-line
