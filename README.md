@@ -2,7 +2,7 @@
 
 
 <p align="center">
-<img width="700" src="./assets/banner.png" alt="helpix banner" />
+<img style="max-width:700px" src="./assets/banner.png" alt="helpix banner" />
 </p>
 
 <br />
@@ -56,10 +56,12 @@ git --help
 
 ## Customization
 
-By default, Helpix uses `bat` as its viewer, but you can change it to something else, such as `less` or `more`.
+By default, Helpix uses `bat` as its viewer, but you can change it to something else, such as `most`, `less` or `more`.
+
+You only need to type this under your plugins array:
 
 ```bash
-HELPIX_VIEWER=less
+HELPIX_VIEWER="less"
 ```
 
 Helpix is enabled by default, but you can disable it without removing it from your plugins array.

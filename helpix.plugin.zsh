@@ -4,7 +4,7 @@
 : ${HELPIX_STYLE:="--language=help --style=plain --color=always"}
 
 _helpix_viewer_args() {
-  local -a args=()
+  local -a args
   
   case "$HELPIX_VIEWER" in
     "bat"|"batcat")
@@ -23,7 +23,7 @@ _helpix_check_help() {
 
   # check only real arguments
   for word in "$@"; do
-    [[ "$word" == "-h" || "$word" == "--help" ]] && return 0
+    [[ "$word" == "-h" || "$word" == "--help" || "$word" == "help" ]] && return 0
   done
 
   return 1
