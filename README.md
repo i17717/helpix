@@ -2,7 +2,7 @@
 
 
 <p align="center">
-<img style="max-width:700px" src="./assets/banner.png" alt="helpix banner" />
+<img width="700" src="./assets/banner.png" alt="helpix banner" />
 </p>
 
 <br />

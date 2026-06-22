@@ -42,11 +42,12 @@ _helpix() {
     return
   fi
 
-  local -a words alias_words 
+  local -a words  
 
   words=("${(z)cmd}")
 
   if (( ${#words} )) && [[ -n ${aliases[${words[1]}]-} ]]; then
+    local -a alias_words
     alias_words=("${(z)aliases[${words[1]}]}")
     words=("${alias_words[@]}" "${words[@]:1}")
   fi
