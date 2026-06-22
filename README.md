@@ -1,8 +1,9 @@
 # Helpix 
 
-<p align="center" style="font-weight: bold">A Custom zsh plugin for beautifying help flags</p>
 
-<img align="center" src="" alt="helpix banner" />
+<p align="center">
+<img width="700" src="./assets/banner.png" alt="helpix banner" />
+</p>
 
 <br />
 
@@ -23,7 +24,7 @@ Sounds amazing, let's give it a try! 🤩
 
 ### Manual
 
-In your terminal, navigate to home directory and type:
+In your terminal, navigate to your home directory and type:
 
 ```bash
 git clone https://github.com/i17717/helpix.git
@@ -61,7 +62,7 @@ By default, Helpix uses `bat` as its viewer, but you can change it to something 
 HELPIX_VIEWER=less
 ```
 
-Helpix is enabled by default, but you can disable it without removing it from your `plugins` array.
+Helpix is enabled by default, but you can disable it without removing it from your plugins array.
 
 ```bash
 HELPIX_ENABLED=0

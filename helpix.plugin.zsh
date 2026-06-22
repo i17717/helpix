@@ -34,14 +34,19 @@ _helpix() {
   # suggested by AI, it restores normal Zsh behavior
   emulate -L zsh  
 
+  local cmd="$BUFFER"
+  # skip if piped or redirected, or using bat
+  if [[ "$cmd" == *"|"* || "$cmd" == *">"* || "$cmd" == *">>"* ]]; then
+    zle .accept-line
+    return
+  fi
+
   local -a words alias_words
 
-  words=("${(z)BUFFER}")
+  words=("${(z)cmd}")
   alias_words=("${(z)aliases[${words[1]}]}")
 
   if [[ -n $alias_words ]]; then
-    words[1]=$alias_words
-
     words=("${alias_words[@]}" "${words[@]:1}")
   fi
 
