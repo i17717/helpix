@@ -3,26 +3,22 @@
 : ${HELPIX_VIEWER:="bat"}
 : ${HELPIX_STYLE:="--language=help --style=plain --color=always"}
 
-_helpix_viewer_args() {
-  local -a args
-  
+# computed viewer arguments once (during initialization)
+HELPIX_VIEWER_ARGS=()
+
+_helpix_init() {
   case "$HELPIX_VIEWER" in
     "bat"|"batcat")
-       args=("${(@z)HELPIX_STYLE}")
-      ;;
-    *)
-      args=()
+      HELPIX_VIEWER_ARGS=("${(@z)HELPIX_STYLE}")
       ;;
   esac
-
-  print -r -- "${args[@]}"
 }
 
 _helpix_check_help() {
   local word
 
   # check only real arguments
-  for word in "$@"; do
+  for word; do
     case $word in
       "-h"|"--help"|"help")
         return 0
@@ -36,7 +32,7 @@ _helpix_check_help() {
 # main widget
 _helpix() {
 
-  # suggested by AI, it restores normal Zsh behavior
+  # prevents global side effects, sugguested by AI
   emulate -L zsh  
 
   local cmd="$BUFFER"
@@ -57,8 +53,7 @@ _helpix() {
 
   if (( HELPIX_ENABLED )) && _helpix_check_help "${words[@]}"; then
     zle kill-whole-line
-    "${words[@]}" 2>&1 | "$HELPIX_VIEWER" $(_helpix_viewer_args)
-
+    "${words[@]}" 2>&1 | "$HELPIX_VIEWER" "${HELPIX_VIEWER_ARGS[@]}"
     # zle redisplay
     return
   fi
@@ -67,4 +62,5 @@ _helpix() {
 }
 
 # Plugin initialization
+_helpix_init
 zle -N accept-line _helpix
