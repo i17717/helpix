@@ -23,25 +23,30 @@ _helpix_check_help() {
 
   # check only real arguments
   for word in "$@"; do
-    [[ "$word" == "-h" || "$word" == "--help" || "$word" == "help" ]] && return 0
+    case $word in
+      "-h"|"--help"|"help")
+        return 0
+        ;;
+    esac
   done
 
   return 1
 }
 
+# main widget
 _helpix() {
 
   # suggested by AI, it restores normal Zsh behavior
   emulate -L zsh  
 
   local cmd="$BUFFER"
-  # skip if piped or redirected, or using bat
-  if [[ "$cmd" == *"|"* || "$cmd" == *">"* || "$cmd" == *">>"* ]]; then
+  # skip if piped or redirected
+  if [[ "$cmd" == *"|"* || "$cmd" == *">"* ]]; then
     zle .accept-line
     return
   fi
 
-  local -a words alias_words viewer_args
+  local -a words alias_words 
 
   words=("${(z)cmd}")
 
@@ -51,9 +56,9 @@ _helpix() {
   fi
 
   if (( HELPIX_ENABLED )) && _helpix_check_help "${words[@]}"; then
-    viewer_args=($(_helpix_viewer_args))
     zle kill-whole-line
     "${words[@]}" 2>&1 | "$HELPIX_VIEWER" $(_helpix_viewer_args)
+
     # zle redisplay
     return
   fi
