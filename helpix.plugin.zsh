@@ -44,16 +44,15 @@ _helpix() {
   local -a words alias_words
 
   words=("${(z)cmd}")
-  alias_words=("${(z)aliases[${words[1]}]}")
 
-  if [[ -n $alias_words ]]; then
+  if (( ${#words} )) && [[ -n ${aliases[${words[1]}]-} ]]; then
+    alias_words=("${(z)aliases[${words[1]}]}")
     words=("${alias_words[@]}" "${words[@]:1}")
   fi
 
   if (( HELPIX_ENABLED )) && _helpix_check_help "${words[@]}"; then
     zle kill-whole-line
     "${words[@]}" 2>&1 | "$HELPIX_VIEWER" $(_helpix_viewer_args)
-
     # zle redisplay
     return
   fi
