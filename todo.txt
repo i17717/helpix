@@ -2,3 +2,5 @@ Tasks:
 
 1- enable/disable the plugin
 2- smart error handling
+3- async rendering
+4- caching repeated --help calls

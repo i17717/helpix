@@ -41,7 +41,7 @@ _helpix() {
     return
   fi
 
-  local -a words alias_words
+  local -a words alias_words viewer_args
 
   words=("${(z)cmd}")
 
@@ -51,6 +51,7 @@ _helpix() {
   fi
 
   if (( HELPIX_ENABLED )) && _helpix_check_help "${words[@]}"; then
+    viewer_args=($(_helpix_viewer_args))
     zle kill-whole-line
     "${words[@]}" 2>&1 | "$HELPIX_VIEWER" $(_helpix_viewer_args)
     # zle redisplay
