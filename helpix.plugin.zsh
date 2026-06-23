@@ -37,7 +37,7 @@ _helpix() {
 
   local cmd="$BUFFER"
   # skip if piped or redirected
-  if [[ "$cmd" == *"|"* || "$cmd" == *">"* ]]; then
+  if [[ "$cmd" == *[<>|]* ]]; then
     zle .accept-line
     return
   fi
