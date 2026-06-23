@@ -19,7 +19,7 @@ _helpix_check_help() {
 
   # check only real arguments
   for word; do
-    case $word in
+    case "$word" in
       "-h"|"--help"|"help")
         return 0
         ;;

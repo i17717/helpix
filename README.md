@@ -24,7 +24,7 @@ Sounds amazing, let's give it a try! 🤩
 
 ### Manual
 
-In your terminal, navigate to your home directory and type:
+In your terminal, navigate to home directory and type:
 
 ```bash
 git clone https://github.com/i17717/helpix.git
@@ -69,3 +69,17 @@ Helpix is enabled by default, but you can disable it without removing it from yo
 ```bash
 HELPIX_ENABLED=0
 ```
+
+There is also a third parameter for designings which set to `--language=help --style=plain --color=always`. If you don't like this customization of `bat` you can always change it to something you prefer by setting the **`HELPIX_STYLE`** to what you desire. see [bat](https://github.com/sharkdp/bat) for more information.
+
+<br />
+
+<span align="center">
+
+~
+
+Link to the article
+
+[Medium]() | [Dev Community]()
+
+</span>
