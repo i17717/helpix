@@ -86,7 +86,7 @@ If you prefer different `bat` options, you can override them by setting **`HELPI
 
 ~
 
-Link to the article
+Article link
 
 [Medium](https://medium.com/@i17717/how-i-turned-my-terminal-into-an-aesthetic-experience-c32b5772d12c) | [DEV Community](https://dev.to/i17717/how-i-turned-my-terminal-into-an-aesthetic-experience-3efj)
 
