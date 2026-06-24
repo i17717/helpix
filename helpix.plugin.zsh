@@ -7,11 +7,9 @@
 HELPIX_VIEWER_ARGS=()
 
 _helpix_init() {
-  case "$HELPIX_VIEWER" in
-    "bat"|"batcat")
-      HELPIX_VIEWER_ARGS=("${(@z)HELPIX_STYLE}")
-      ;;
-  esac
+  if [[ "$HELPIX_VIEWER" == "bat" || "$HELPIX_VIEWER" == "batcat" ]]; then
+    HELPIX_VIEWER_ARGS=("${(@z)HELPIX_STYLE}")
+  fi
 }
 
 _helpix_check_help() {
@@ -37,7 +35,7 @@ _helpix() {
 
   local cmd="$BUFFER"
   # skip if piped or redirected
-  if [[ "$cmd" == *[<>|]* ]]; then
+  if [[ "$cmd" == *[\<\>\|]* ]]; then
     zle .accept-line
     return
   fi
